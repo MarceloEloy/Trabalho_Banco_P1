@@ -1,10 +1,10 @@
 import PySimpleGUI as Sg  # python -m pip install pysimplegui
 import mysql.connector  # pip install mysql-connector-python
 conexao = mysql.connector.connect(
-    host='localhost',
+    host='127.0.0.1',
     user='root',
     password='Mneto0710@',
-    database='testecoisa',
+    database='bancop1',
 )
 def pag_cadastro():
     layout_Cadastro = [
@@ -34,6 +34,7 @@ def pag_cadastro():
             Sg.Popup('Errado')
         if evento == Sg.WIN_CLOSED:
             break
+            quit()
         if evento == 'Login':
             Tela_Cadastro.close()
             pag_Login()
@@ -59,6 +60,9 @@ def pag_Login():
                     pag_Inic(1000)
                 else:
                     Sg.popup('Errado')
+        if eventos == Sg.WIN_CLOSED:
+            break
+            quit()
 
 def pag_Inic(z):  # Função Para Definir A Tela De Depositos E Saques
     layoutA = [  # Vai Definir As Posições e o Estilo Das Funcionalidades
@@ -72,6 +76,7 @@ def pag_Inic(z):  # Função Para Definir A Tela De Depositos E Saques
         evento, valor = telaA.read()
         if evento in (Sg.WIN_CLOSED, 'Sair'):
             break
+            quit()
         deposito = valor['Depositar']
         saque = valor['Sacar']
         if deposito in ("", None):
