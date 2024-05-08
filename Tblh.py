@@ -1,7 +1,7 @@
 import PySimpleGUI as Sg  # python -m pip install pysimplegui
 import mysql.connector  # pip install mysql-connector-python
 conexao = mysql.connector.connect(
-    host='127.0.0.1',
+    host='192.168.1.9',
     user='root',
     password='Mneto0710@',
     database='bancop1',
