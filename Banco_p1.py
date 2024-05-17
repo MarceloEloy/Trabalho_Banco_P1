@@ -15,7 +15,7 @@ def pag_criar_banco():
             tela_criar_banco.close()
             break
         if eventos == 'Sim':
-            cursor.execute("CREATE TABLE cadastroB (email varchar(20), senha varchar(15), agencia int, dinheiro int)")
+            cursor.execute("CREATE TABLE Bcadastro (email varchar(20), senha varchar(15), agencia int, dinheiro int)")
             banco.commit()
             tela_criar_banco.close()
             pag_cadastro()
@@ -56,7 +56,7 @@ def pag_cadastro():
             break
         if evento == 'Enviar' and email != "" and senha != "" and agencia != 0:
             cursor = banco.cursor()
-            inserirdados = (f"INSERT INTO cadastroB VALUES('{email}', '{senha}', '{agencia}', 1000)")
+            inserirdados = (f"INSERT INTO Bcadastro VALUES('{email}', '{senha}', '{agencia}', 1000)")
             cursor.execute(inserirdados)
             banco.commit()
             cursor.close()
@@ -87,7 +87,7 @@ def pag_Login():
         if valor['Ot'] == True:
             agencia = 5
         if eventos == 'Entrar':
-                validar = (f" SELECT senha FROM cadastroB WHERE email = '{email}' AND agencia = {agencia} ")
+                validar = (f" SELECT senha FROM Bcadastro WHERE email = '{email}' AND agencia = {agencia} ")
                 cursor.execute(validar)
                 dados = str(cursor.fetchall())
                 dados = dados[3:(len(dados) - 4)]
@@ -100,7 +100,7 @@ def pag_Login():
             break
 
 def pag_transac(email, senha):
-    cursor.execute(f"SELECT dinheiro FROM cadastroB WHERE email = '{email}' AND senha = '{senha}'")
+    cursor.execute(f"SELECT dinheiro FROM Bcadastro WHERE email = '{email}' AND senha = '{senha}'")
     dinheiro_conta = cursor.fetchall()
     dinheiro_conta = str(dinheiro_conta[0])
     dinheiro_conta = (dinheiro_conta[1:len(dinheiro_conta) - 2])
@@ -138,6 +138,6 @@ def pag_transac(email, senha):
                 ]
                 tela.close()
                 tela = Sg.Window("Pag Transação", layout)
-                cursor.execute(f"UPDATE cadastroB SET Dinheiro = '{dinheiro_conta}' WHERE email = '{email}' AND senha = '{senha}'")
+                cursor.execute(f"UPDATE Bcadastro SET Dinheiro = '{dinheiro_conta}' WHERE email = '{email}' AND senha = '{senha}'")
                 banco.commit()
 pag_criar_banco()
