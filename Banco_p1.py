@@ -141,3 +141,5 @@ def pag_transac(email, senha):
                 cursor.execute(f"UPDATE Bcadastro SET Dinheiro = '{dinheiro_conta}' WHERE email = '{email}' AND senha = '{senha}'")
                 banco.commit()
 pag_criar_banco()
+banco.close
+cursor.close
